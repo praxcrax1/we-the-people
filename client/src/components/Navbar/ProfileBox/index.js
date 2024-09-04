@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { logoutUser } from '../../../redux/actions/userActions';
 
 const ProfileBox = ({ ref, userDetails }) => {
     const navigate = useNavigate();
+        const id = useSelector(state => state.user.userId);
 
     const handleLogout = () => {
-        // Implement logout logic here
-        console.log('Logout clicked');
+        logoutUser();
+        navigate('/');
     };
+
 
     return (
         <div className={styles.profileBox} ref={ref}>
@@ -22,7 +27,7 @@ const ProfileBox = ({ ref, userDetails }) => {
             <div className={styles.column}>
                 <h3>Projects</h3>
                 <ul>
-                    {userDetails.createdProjects.map((project, index) => (
+                    {userDetails?.createdProjects.map((project, index) => (
                         <li key={index} onClick={() => navigate(`/project/${project._id}`)}>{project.title}</li>
                     ))}
                 </ul>

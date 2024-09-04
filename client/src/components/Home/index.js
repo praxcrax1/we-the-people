@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
-    const { id } = useParams();
     const userId = useSelector(state => state.user.userId);
 
     useEffect(() => {
@@ -27,14 +26,9 @@ const Home = () => {
         fetchProjects();
     }, [userId]);
 
-    const handleLogout = () => {
-        // Implement logout logic here
-        console.log("Logout clicked");
-    };
-
     return (
         <div className={styles.parentContainer}>
-            <Navbar id={id} />
+            <Navbar/>
             <div className={styles.contentContainer}>
                 <div className={styles.introContainer}>
                     <span>Bring a creative idea to life</span>

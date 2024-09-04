@@ -4,12 +4,14 @@ import styles from './styles.module.css';
 import missing from '../../Images/missing.jpg';
 import axios from 'axios';
 import ProfileBox from './ProfileBox';
+import { useSelector } from 'react-redux';
 
-const Navbar = ({ hideSearchAndStart = false, id}) => {
+const Navbar = ({ hideSearchAndStart = false}) => {
     const navigate = useNavigate();
     const [showProfile, setShowProfile] = useState(false);
     const profileBoxRef = useRef(null);
     const [userDetails, setUserDetails] = useState(null);
+    const id = useSelector(state => state.user.userId);
     useEffect(() => {
         const handleScroll = () => {
             if (showProfile) {
@@ -36,7 +38,6 @@ const Navbar = ({ hideSearchAndStart = false, id}) => {
                     'x-auth-token': localStorage.getItem('x-auth-token')
                 }
             });
-            console.log(response.data);
             setUserDetails(response.data);
         } catch (error) {
             console.error('Error fetching user details:', error);
@@ -55,7 +56,7 @@ const Navbar = ({ hideSearchAndStart = false, id}) => {
             <div className={styles.profileContainer} onClick={() => setShowProfile(!showProfile)}>
                 <img src={missing} alt="Profile" />
             </div>
-            {showProfile && <ProfileBox ref={profileBoxRef} userDetails={userDetails} />}
+            {showProfile && <ProfileBox ref={profileBoxRef} userDetails={userDetails}/>}
         </div>
     );
 };
