@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 import missing from '../../Images/missing.jpg';
 import { toast, ToastContainer } from 'react-toastify';
 import PasswordChangeModal from './PasswordChangeModal';
+import { API_URL } from '../../apiConfig';
 
 const Profile = () => {
     const userId = useSelector(state => state.user.userId);
@@ -29,7 +30,7 @@ const Profile = () => {
 
     const getUserDetails = async (userId) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/users/${userId}`, {
+            const response = await axios.get(`${API_URL}/api/users/${userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'x-auth-token': localStorage.getItem('x-auth-token')
@@ -52,7 +53,7 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:5000/api/users/${userId}`, {
+            const response = await axios.put(`${API_URL}/api/users/${userId}`, {
                 name: userDetails.name,
                 email: userDetails.email
             }, {

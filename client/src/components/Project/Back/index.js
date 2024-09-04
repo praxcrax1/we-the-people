@@ -6,6 +6,7 @@ import Navbar from '../../Navbar';
 import BackProjectModal from './BackProjectModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_URL } from '../../../apiConfig';
 
 const Back = ({}) => {
     const { id } = useParams();
@@ -15,7 +16,7 @@ const Back = ({}) => {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/projects/${id}`);
+                const response = await axios.get(`${API_URL}/api/projects/${id}`);
                 setProject(response.data);
             } catch (error) {
                 console.error('Error fetching project:', error);
@@ -28,7 +29,7 @@ const Back = ({}) => {
     const handleBackProject = async (amount) => {
         try {
             const response = await axios.post(
-                `http://localhost:5000/api/projects/${id}/contribute`,
+                `${API_URL}/api/projects/${id}/contribute`,
                 { amount },
                 { headers: { 'Content-Type': 'application/json', 'x-auth-token': localStorage.getItem('x-auth-token') } }
             );

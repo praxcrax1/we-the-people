@@ -7,6 +7,7 @@ import { setUserId, setUserDetails } from '../../../redux/actions/userActions';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.css';
+import { API_URL } from '../../../apiConfig';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem('x-auth-token', response.data.token);
       localStorage.setItem('userId', response.data.id);
       localStorage.setItem('userDetails', JSON.stringify(response.data.user));

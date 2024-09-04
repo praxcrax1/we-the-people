@@ -6,6 +6,7 @@ import ProjectCardGroup from "../Project/ProjectCardGroup";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserId } from "../../redux/actions/userActions"; // Assuming this action exists
+import { API_URL } from "../../apiConfig";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
@@ -23,7 +24,7 @@ const Home = () => {
         const fetchProjects = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:5000/api/projects/list"
+                    `${API_URL}/api/projects/list`
                 );
                 setProjects(response.data);
             } catch (error) {

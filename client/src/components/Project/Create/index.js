@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.css';
 import Navbar from '../../Navbar';
 import { useNavigate } from 'react-router-dom';
-
+import { API_URL } from '../../../apiConfig';
 const CreateProject = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -29,7 +29,7 @@ const CreateProject = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://localhost:5000/api/projects/create', {
+            const response = await axios.post(`${API_URL}/api/projects/create`, {
                 title,
                 description,
                 goal: parseFloat(goal)

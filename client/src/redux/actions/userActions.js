@@ -1,3 +1,5 @@
+import { API_URL } from "../../apiConfig";
+
 // Action Types
 export const SET_USER_ID = 'SET_USER_ID';
 export const CLEAR_USER_ID = 'CLEAR_USER_ID';
@@ -26,7 +28,7 @@ export const clearUserDetails = () => ({
 // Thunk action creators
 export const fetchUserDetails = (userId) => async (dispatch) => {
   try {
-    const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+    const response = await fetch(`${API_URL}/api/users/${userId}`, {
       headers: {
         'x-auth-token': localStorage.getItem('x-auth-token'),
       },

@@ -7,6 +7,7 @@ import ProfileBox from './ProfileBox';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserId } from '../../redux/actions/userActions';
 import debounce from 'lodash/debounce';
+import { API_URL } from '../../apiConfig';
 
 const Navbar = ({ hideSearchAndStart = false}) => {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Navbar = ({ hideSearchAndStart = false}) => {
         if (!userId) return;
 
         try {
-            const response = await axios.get(`http://localhost:5000/api/users/${userId}`, {
+            const response = await axios.get(`${API_URL}/api/users/${userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'x-auth-token': localStorage.getItem('x-auth-token')
@@ -49,7 +50,7 @@ const Navbar = ({ hideSearchAndStart = false}) => {
 
     const handleSearch = async (term) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/projects/list?title=${term}`);
+            const response = await axios.get(`${API_URL}/api/projects/list?title=${term}`);
             setSearchResults(response.data);
             setShowDropdown(true);
         } catch (error) {

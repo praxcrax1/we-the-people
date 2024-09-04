@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './styles.module.css';
 import { toast } from 'react-toastify';
+import { API_URL } from '../../../apiConfig';
 
 const PasswordChangeModal = ({ show, onClose, onSubmit, email }) => {
     const [oldPassword, setOldPassword] = useState('');
@@ -12,7 +13,7 @@ const PasswordChangeModal = ({ show, onClose, onSubmit, email }) => {
     const handleChangePassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/change-password', {
+            const response = await axios.post(`${API_URL}/api/auth/change-password`, {
                 email: email,
                 oldPassword,
                 newPassword
