@@ -15,8 +15,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-    origin: 'https://we-the-people.onrender.com',
-    credentials: true
+    origin: true,
 }));
 app.use(express.json());
 
