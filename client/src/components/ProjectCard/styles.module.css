@@ -1,0 +1,59 @@
+.projectCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .projectCard:hover {
+    transform: translateY(-5px);
+  }
+
+  .projectImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .profileIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .cardContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .projectDetailsContainer {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-start;
+    font-size: 1em;
+  }
+
+  .fundingStatus {
+    font-size: 1em;
+    color: #000000a3;
+  }
+
+  .projectDescription {
+    font-size: 0.8em;
+    color: #000000a3;
+  }

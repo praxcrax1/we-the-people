@@ -1,0 +1,17 @@
+.cardContainer {
+    margin-right: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
+    padding: 40px;
+  }
+
+  .cardContainerTitle {
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 1.2em;
+    width: 100%;  
+  }
