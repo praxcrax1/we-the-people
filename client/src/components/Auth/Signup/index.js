@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUserId, setUserDetails } from '../../../redux/actions/userActions';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.css';
@@ -11,7 +13,8 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,10 +30,12 @@ const Signup = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signup', { name, email, password });
       localStorage.setItem('x-auth-token', response.data.token);
-      history('/dashboard');
+      dispatch(setUserId(response.data.id));
+      dispatch(setUserDetails(response.data.user));
+      navigate(`/dashboard/`);
     } catch (error) {
-      console.error('Signup failed:', error);
-      toast.error(error?.response?.data?.msg || 'Something went wrong', {
+      console.error('Signup failed:', error?.response?.data?.msg);
+      toast.error(`${error?.response?.data?.msg}` || 'Something went wrong', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

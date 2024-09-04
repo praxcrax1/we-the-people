@@ -1,6 +1,9 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUserId, setUserDetails } from '../../../redux/actions/userActions';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.css';
@@ -9,7 +12,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +21,9 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       localStorage.setItem('x-auth-token', response.data.token);
-      history('/dashboard');
+      dispatch(setUserId(response.data.id));
+      dispatch(setUserDetails(response.data.user));
+      navigate(`/dashboard/`);
     } catch (error) {
       console.error('Login failed:', error?.response?.data?.msg);
       toast.error(`${error?.response?.data?.msg}` || 'Something went wrong', {

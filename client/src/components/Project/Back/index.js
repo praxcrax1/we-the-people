@@ -3,10 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './styles.module.css';
 import Navbar from '../../Navbar';
+import BackProjectModal from './BackProjectModal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Back = ({}) => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchProject = async () => {
@@ -20,6 +24,22 @@ const Back = ({}) => {
 
         fetchProject();
     }, [id]);
+
+    const handleBackProject = async (amount) => {
+        try {
+            const response = await axios.post(
+                `http://localhost:5000/api/projects/${id}/contribute`,
+                { amount },
+                { headers: { 'Content-Type': 'application/json', 'x-auth-token': localStorage.getItem('x-auth-token') } }
+            );
+            setProject(response.data);
+            setShowModal(false);
+            toast.success('Contribution successful!');
+        } catch (error) {
+            console.error('Error backing project:', error);
+            toast.error('Failed to contribute. Please try again.');
+        }
+    };
 
     const progressPercentage = project ? (project.amountRaised / project.goal) * 100 : 0;
 
@@ -43,6 +63,7 @@ const Back = ({}) => {
                             <div className={styles.details}>
                                 <div className={styles.line}/>
                                 <span className={styles.goal}>${project.goal}</span>
+                                <span className={styles.amountRaised}>Amount Raised <br/><p>${project.amountRaised}</p></span>
                                 <span className={styles.backers}>{project.backers.length}<br/><p>Backers</p></span>
                                 <span className={styles.dateCreated}>Created on<br/><p>{new Date(project.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</p></span>
                                 <div className={styles.progressCircle}>
@@ -65,7 +86,7 @@ const Back = ({}) => {
                                         {Math.round(progressPercentage)}%
                                     </div>
                                 </div>
-                                <button className={styles.backButton}>Back Project</button>
+                                <button className={styles.backButton} onClick={() => setShowModal(true)}>Back Project</button>
                             </div>
                         </div>
                     </>
@@ -73,6 +94,12 @@ const Back = ({}) => {
                     <div className={styles.loading}></div>
                 )}
             </div>
+            <BackProjectModal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                onSubmit={handleBackProject}
+            />
+            <ToastContainer/>
         </>
     );
 };

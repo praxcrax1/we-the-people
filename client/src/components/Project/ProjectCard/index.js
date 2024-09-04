@@ -21,10 +21,11 @@ const ProjectCard = ({ project }) => {
                     className={styles.profileIcon}
                 />
                 <div className={styles.projectDetailsContainer}>
-                    <span>{project.title}</span>
+                    <span className={styles.projectTitle}>{project.title}</span>
+                    <span className={styles.creator}>by {project.creator.name}</span>
                     <div className={styles.fundingStatus}>
                         <span>
-                            {Math.floor((project.amountRaised / project.goal) * 100)}% funded •{' '}
+                            {Math.floor((project.amountRaised / project.goal) * 100)}% funded
                         </span>
                         <br />
                         <div className={styles.projectDescription}><span>{project.description}</span></div>

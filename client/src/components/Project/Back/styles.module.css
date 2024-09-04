@@ -124,7 +124,7 @@
     cursor: pointer;
     margin-left: -20px;
     margin-right: -20px;
-    margin-bottom: -20px;
+    margin-bottom: -21px;
 }
 
 .progressCircle {
@@ -162,5 +162,22 @@
     font-size: 1.2rem;
     font-weight: 600;
     color: #525AD1;
+}
+
+.amountRaised {
+    text-align: left;
+    color: rgba(0, 0, 0, 0.769);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.amountRaised p {
+    color: rgba(0, 0, 0, 0.471);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
 }
 

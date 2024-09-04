@@ -3,9 +3,13 @@ import styles from "./styles.module.css";
 import axios from "axios";
 import Navbar from "../Navbar";
 import ProjectCardGroup from "../Project/ProjectCardGroup";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
+    const { id } = useParams();
+    const userId = useSelector(state => state.user.userId);
 
     useEffect(() => {
         // Fetch the list of projects from the API
@@ -21,7 +25,7 @@ const Home = () => {
         };
 
         fetchProjects();
-    }, []);
+    }, [userId]);
 
     const handleLogout = () => {
         // Implement logout logic here
@@ -30,7 +34,7 @@ const Home = () => {
 
     return (
         <div className={styles.parentContainer}>
-            <Navbar />
+            <Navbar id={id} />
             <div className={styles.contentContainer}>
                 <div className={styles.introContainer}>
                     <span>Bring a creative idea to life</span>

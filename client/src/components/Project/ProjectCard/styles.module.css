@@ -51,15 +51,27 @@
     font-size: 1em;
   }
 
+  .projectTitle {
+    font-size: 1.2em;
+    color: black;
+    font-weight: 500;
+  }
+
   .fundingStatus {
+    padding-top: 10px;
     font-size: 1em;
-    color: #000000a3;
+    color: black;
   }
 
   .projectDescription {
     overflow: hidden;
     font-size: 0.8em;
-    color: #000000a3;   
+    color: black;   
+  }
+
+  .creator {
+    font-size: 0.8em;
+    color: #000000a3;
   }
 
 
