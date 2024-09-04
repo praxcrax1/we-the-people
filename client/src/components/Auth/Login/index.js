@@ -21,9 +21,11 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       localStorage.setItem('x-auth-token', response.data.token);
+      localStorage.setItem('userId', response.data.id);
+      localStorage.setItem('userDetails', JSON.stringify(response.data.user));
       dispatch(setUserId(response.data.id));
       dispatch(setUserDetails(response.data.user));
-      navigate(`/dashboard/`);
+      navigate(`/dashboard`);
     } catch (error) {
       console.error('Login failed:', error?.response?.data?.msg);
       toast.error(`${error?.response?.data?.msg}` || 'Something went wrong', {

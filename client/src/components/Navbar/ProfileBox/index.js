@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { logoutUser } from '../../../redux/actions/userActions';
 
-const ProfileBox = ({ ref, userDetails }) => {
+const ProfileBox = ({ userDetails }) => {
     const navigate = useNavigate();
         const id = useSelector(state => state.user.userId);
 
@@ -16,7 +16,7 @@ const ProfileBox = ({ ref, userDetails }) => {
 
 
     return (
-        <div className={styles.profileBox} ref={ref}>
+        <div className={styles.profileBox}>
             <div className={styles.column}>
                 <h3>Account</h3>
                 <ul>
@@ -30,6 +30,7 @@ const ProfileBox = ({ ref, userDetails }) => {
                     {userDetails?.createdProjects.map((project, index) => (
                         <li key={index} onClick={() => navigate(`/project/${project._id}`)}>{project.title}</li>
                     ))}
+                    <li onClick={() => navigate('/create-project')}>Create a Project +</li>
                 </ul>
             </div>
         </div>

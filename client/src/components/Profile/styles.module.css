@@ -1,0 +1,36 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profileImage img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.profileFormButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profileFormButtons button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #525AD1;
+    color: #fff;
+    cursor: pointer;
+}

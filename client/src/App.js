@@ -6,6 +6,7 @@ import Landing from './components/Landing';
 import Home from './components/Home';
 import CreateProject from './components/Project/Create';
 import Back from './components/Project/Back';
+import Profile from './components/Profile';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/dashboard" element={<Home />} />
           <Route path="/create-project" element={<CreateProject/>} />
           <Route path="/project/:id" element={<Back />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>

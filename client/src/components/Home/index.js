@@ -4,13 +4,21 @@ import axios from "axios";
 import Navbar from "../Navbar";
 import ProjectCardGroup from "../Project/ProjectCardGroup";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUserId } from "../../redux/actions/userActions"; // Assuming this action exists
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
     const userId = useSelector(state => state.user.userId);
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        // Check if userId is in localStorage and set it in Redux if it exists
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId && !userId) {
+            dispatch(setUserId(storedUserId));
+        }
+
         // Fetch the list of projects from the API
         const fetchProjects = async () => {
             try {
@@ -24,7 +32,7 @@ const Home = () => {
         };
 
         fetchProjects();
-    }, [userId]);
+    }, [userId, dispatch]);
 
     return (
         <div className={styles.parentContainer}>

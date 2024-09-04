@@ -34,7 +34,14 @@ router.post('/create', auth, async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const projects = await Project.find().populate('creator', ['name']);
+        const { title } = req.query;
+        let query = {};
+        
+        if (title) {
+            query.title = { $regex: title, $options: 'i' };
+        }
+
+        const projects = await Project.find(query).populate('creator', ['name']);
         res.json(projects);
     } catch (err) {
         console.error(err.message);
@@ -100,8 +107,8 @@ const updateUserContributions = async (userId) => {
 router.post('/:id/contribute', auth, async (req, res) => {
     const { amount } = req.body;
     
-    if (!amount || amount <= 0) {
-        return res.status(400).json({ msg: 'Contribution amount must be greater than zero' });
+    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+        return res.status(400).json({ msg: 'Contribution amount must be a number greater than zero' });
     }
 
     try {
@@ -116,18 +123,18 @@ router.post('/:id/contribute', auth, async (req, res) => {
         
         if (existingContribution) {
             // Update existing contribution
-            existingContribution.amount += amount;
+            existingContribution.amount = parseFloat(existingContribution.amount) + parseFloat(amount);
         } else {
             // Add new contribution
-            project.backers.push({ user: req.user.id, amount });
+            project.backers.push({ user: req.user.id, amount: parseFloat(amount) });
             if (!user.backedProjects.includes(project.id)) {
                 user.backedProjects.push(project.id);
             }
         }
 
-        // Update project’s amount raised
-        project.amountRaised += amount;
-        await updateUserContributions(req.user.id, amount);
+        // Update project's amount raised
+        project.amountRaised = parseFloat(project.amountRaised) + parseFloat(amount);
+        await updateUserContributions(req.user.id, parseFloat(amount));
 
         await project.save();
         await user.save();

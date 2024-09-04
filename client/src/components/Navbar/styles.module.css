@@ -22,6 +22,7 @@
     border-radius: 5px;
     margin-right: 20px;
     padding-left: 10px;
+    margin-bottom: 0;
   }
 
   .navbar input:focus {
@@ -29,7 +30,7 @@
   }
 
   .navbar input::placeholder {
-    padding-left: 10px;
+    padding-left: 0;
   }
 
   .navbar button {
@@ -43,16 +44,91 @@
     background-color: #525AD1;
   }
 
+.profileBoxContainer {
+  position: relative;
+}
 
-  .profileContainer {
-    cursor: pointer;
-    margin-right: 50px;
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    background-color: #0000005a;
-  }
+.profileContainer {
+  position: relative;
+  cursor: pointer;
+  margin-right: 50px;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  background-color: #0000005a;
+}
 
-  .profileContainer img {
-    border-radius: 100%;
-  }
+.profileContainer img {
+  border-radius: 100%;
+}
+
+.profileBox {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.profileItem {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.profileItem:hover {
+  background-color: #f0f0f0;
+}
+
+
+.searchContainer {
+  position: relative;
+  width: 40%;
+}
+
+.searchContainer input {
+  border-radius: 0;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.searchDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 99.7%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.searchItem {
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchItem:hover {
+  background-color: #f0f0f0;
+}
+
+.searchItem span:first-child {
+  font-weight: 300;
+}
+
+.searchItem span:last-child {
+  color: #666;
+  font-size: 0.9em;
+}

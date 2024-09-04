@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
     const navigate = useNavigate();
+    
+    const truncateDescription = (description, maxLength = 100) => {
+        if (description.length <= maxLength) return description;
+        return description.slice(0, maxLength) + '...';
+    };
+
     return (
         <div className={styles.projectCard} onClick={() => {
             navigate(`/project/${project._id}`);
@@ -27,8 +33,9 @@ const ProjectCard = ({ project }) => {
                         <span>
                             {Math.floor((project.amountRaised / project.goal) * 100)}% funded
                         </span>
-                        <br />
-                        <div className={styles.projectDescription}><span>{project.description}</span></div>
+                    </div>
+                    <div className={styles.projectDescription}>
+                        {truncateDescription(project.description)}
                     </div>
                 </div>
             </div>
