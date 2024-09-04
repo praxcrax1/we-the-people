@@ -4,6 +4,8 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import Landing from './components/Landing';
 import Home from './components/Home';
+import CreateProject from './components/Project/Create';
+import Back from './components/Project/Back';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Home />} />
+          <Route path="/create-project" element={<CreateProject/>} />
+          <Route path="/project/:id" element={<Back />} />
         </Routes>
       </div>
     </Router>

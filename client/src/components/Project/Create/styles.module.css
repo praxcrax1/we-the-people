@@ -1,0 +1,61 @@
+body{
+    background-image: url('../../../Images/homebg.png');
+}
+
+.createProject{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.createProjectForm {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  
+  .createProjectForm span {
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+  
+  .createProjectForm input {
+    width: 100%;
+    padding: 0.75em;
+    border: 1px solid #525AD1;
+    box-sizing: border-box;
+  }
+  
+  .createProjectForm input:focus {
+    outline: none;
+  }
+  
+  .createProjectForm button {
+    width: 100%;
+    padding: 0.75em;
+    margin-top: 10px;
+    background-color: #525AD1;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .loader {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+  }
+

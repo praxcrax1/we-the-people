@@ -1,17 +1,14 @@
 import React from 'react';
 import styles from './styles.module.css';
-import missing from '../../Images/missing.jpg';
+import missing from '../../../Images/missing.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectCard = ({ project }) => {
-    const calculateDaysLeft = (expiresAt) => {
-        const now = new Date();
-        const expiryDate = new Date(expiresAt);
-        const differenceInTime = expiryDate - now;
-        return Math.ceil(differenceInTime / (1000 * 3600 * 24));
-    };
-
+    const navigate = useNavigate();
     return (
-        <div className={styles.projectCard}>
+        <div className={styles.projectCard} onClick={() => {
+            navigate(`/project/${project._id}`);
+        }}>
             <img
                 src={`https://picsum.photos/seed/${project._id}/300/200`}
                 alt={project.title}
@@ -28,10 +25,9 @@ const ProjectCard = ({ project }) => {
                     <div className={styles.fundingStatus}>
                         <span>
                             {Math.floor((project.amountRaised / project.goal) * 100)}% funded •{' '}
-                            {calculateDaysLeft(project.expiresAt)} days left
                         </span>
                         <br />
-                        <span className={styles.projectDescription}>{project.description}</span>
+                        <div className={styles.projectDescription}><span>{project.description}</span></div>
                     </div>
                 </div>
             </div>

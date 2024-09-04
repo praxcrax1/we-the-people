@@ -46,10 +46,6 @@ const ProjectSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    expiresAt: {
-        type: Date,
-        required: true
-    }
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);

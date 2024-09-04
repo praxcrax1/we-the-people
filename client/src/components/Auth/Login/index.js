@@ -15,7 +15,8 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      localStorage.setItem('x-auth-token', response.data.token);
       history('/dashboard');
     } catch (error) {
       console.error('Login failed:', error?.response?.data?.msg);

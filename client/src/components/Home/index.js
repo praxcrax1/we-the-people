@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import axios from "axios";
-import missing from "../../Images/missing.jpg";
-import ProjectCardGroup from "../ProjectCardGroup";
 import Navbar from "../Navbar";
+import ProjectCardGroup from "../Project/ProjectCardGroup";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
@@ -30,14 +28,6 @@ const Home = () => {
         console.log("Logout clicked");
     };
 
-    const calculateDaysLeft = (expiresAt) => {
-        const currentDate = new Date();
-        const expirationDate = new Date(expiresAt);
-        const timeDifference = expirationDate.getTime() - currentDate.getTime();
-        const daysLeft = Math.ceil(timeDifference / (1000 * 3600 * 24));
-        return daysLeft;
-    };
-
     return (
         <div className={styles.parentContainer}>
             <Navbar />
@@ -61,11 +51,12 @@ const Home = () => {
                     </div>
                 </div>
                 <div className={styles.cardContainerParent}>
-                    <span>Recommended for you:</span>
-                    <ProjectCardGroup 
-                        projects={projects} 
-                        calculateDaysLeft={calculateDaysLeft} 
-                    />
+                    <div className={styles.cardContainer}>
+                        <span>Recommended for you:</span>
+                        <ProjectCardGroup 
+                            projects={projects} 
+                        />
+                    </div>
                 </div>  
             </div>
         </div>

@@ -8,14 +8,13 @@ const router = express.Router();
 // @desc   Create a new project
 // @access Private
 router.post('/create', auth, async (req, res) => {
-    const { title, description, goal, expiresAt } = req.body;
+    const { title, description, goal } = req.body;
 
     try {
         const newProject = new Project({
             title,
             description,
             goal,
-            expiresAt,
             creator: req.user.id
         });
 

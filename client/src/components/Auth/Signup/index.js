@@ -25,7 +25,8 @@ const Signup = () => {
     }
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/signup', { name, email, password });
+      const response = await axios.post('http://localhost:5000/api/auth/signup', { name, email, password });
+      localStorage.setItem('x-auth-token', response.data.token);
       history('/dashboard');
     } catch (error) {
       console.error('Signup failed:', error);

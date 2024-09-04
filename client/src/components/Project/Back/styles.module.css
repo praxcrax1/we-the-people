@@ -1,0 +1,166 @@
+
+
+.parent {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 100px;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.heading span {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.heading p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.769);
+}
+
+.imageContainer {
+    width: 60%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+.imageContainer img {
+    border: 1px solid rgba(0, 0, 0, 0.482);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.details {
+    padding: 0 20px 20px 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.482);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.line {
+    padding: 0 !important;
+    margin: 0;
+    width: calc(100% + 40px);
+    height: 10px;
+    background-color: #525AD1;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 20px;
+}
+
+.goal {
+    color: #525AD1;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.backers {
+    text-align: left;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.769);
+    font-weight: 400;
+}
+
+.backers p {
+    color: rgba(0, 0, 0, 0.471);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.dateCreated {
+    text-align: left;
+    color: rgba(0, 0, 0, 0.769);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.dateCreated p {
+    color: rgba(0, 0, 0, 0.471);
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.backButton {
+    width: calc(100% + 40px);
+    height: 50px;
+    border: none;
+    background-color: #525AD1;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 100;
+    cursor: pointer;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -20px;
+}
+
+.progressCircle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+}
+
+.circleSvg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circleBg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke: #525AD1;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.6s ease 0s;
+}
+
+.progressText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #525AD1;
+}
+
