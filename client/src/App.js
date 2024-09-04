@@ -21,6 +21,7 @@ function App() {
           <Route path="/create-project" element={<CreateProject/>} />
           <Route path="/project/:id" element={<Back />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/edit-project/:id" element={<CreateProject/>} />
         </Routes>
       </div>
     </Router>

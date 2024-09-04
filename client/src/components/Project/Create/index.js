@@ -1,17 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.css';
 import Navbar from '../../Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL } from '../../../apiConfig';
+
 const CreateProject = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [goal, setGoal] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { id } = useParams();
+    const isEditing = !!id;
+
+    useEffect(() => {
+        if (isEditing) {
+            fetchProjectDetails();
+        }
+    }, [id]);
+
+    const fetchProjectDetails = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/api/projects/${id}`, {
+                headers: {
+                    'x-auth-token': localStorage.getItem('x-auth-token')
+                }
+            });
+            const { title, description, goal } = response.data;
+            setTitle(title);
+            setDescription(description);
+            setGoal(goal.toString());
+        } catch (error) {
+            toast.error('Failed to fetch project details');
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +54,9 @@ const CreateProject = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post(`${API_URL}/api/projects/create`, {
+            const url = isEditing ? `${API_URL}/api/projects/${id}/updates` : `${API_URL}/api/projects/create`;
+            const method = isEditing ? axios.put : axios.post;
+            const response = await method(url, {
                 title,
                 description,
                 goal: parseFloat(goal)
@@ -41,14 +68,14 @@ const CreateProject = () => {
             });
 
             if (response.data) {
-                toast.success('Project created successfully!');
+                toast.success(isEditing ? 'Project updated successfully!' : 'Project created successfully!');
                 setTitle('');
                 setDescription('');
                 setGoal('');
                 navigate('/dashboard');
             }
         } catch (error) {
-            toast.error(error.response?.data?.msg || 'An error occurred while creating the project');
+            toast.error(error.response?.data?.msg || `An error occurred while ${isEditing ? 'updating' : 'creating'} the project`);
         } finally {
             setIsLoading(false);
         }
@@ -58,8 +85,8 @@ const CreateProject = () => {
     <>
         <Navbar hideSearchAndStart={true} />
         <div className={styles.createProject}>
-            <h1>Create a New Project</h1>
-            <span>Create a new project to start fundraising for your cause.</span>
+            <h1>{isEditing ? 'Edit Project' : 'Create a New Project'}</h1>
+            <span>{isEditing ? 'Edit your project details.' : 'Create a new project to start fundraising for your cause.'}</span>
             <form className={styles.createProjectForm} onSubmit={handleSubmit}>
                 <input 
                     type="text" 
@@ -79,7 +106,7 @@ const CreateProject = () => {
                     value={goal}
                     onChange={(e) => setGoal(e.target.value)}
                 />
-                <button type="submit">{isLoading ? <div className={styles.loader}></div> : "Create Project"}</button>
+                <button type="submit">{isLoading ? <div className={styles.loader}></div> : (isEditing ? "Edit Project" : "Create Project")}</button>
             </form>
         </div>
         <ToastContainer />

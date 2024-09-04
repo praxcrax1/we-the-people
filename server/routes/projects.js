@@ -70,10 +70,21 @@ router.put('/:id/updates', auth, async (req, res) => {
             return res.status(401).json({ msg: 'User not authorized' });
         }
 
-        project.updates.unshift({ content: req.body.content });
+        const { title, description, goal } = req.body;
+
+        // Update project fields if provided
+        if (title) project.title = title;
+        if (description) project.description = description;
+        if (goal) project.goal = parseFloat(goal);
+
+        // Add update to project history if content is provided
+        if (req.body.content) {
+            project.updates.unshift({ content: req.body.content });
+        }
+
         await project.save();
 
-        res.json(project.updates);
+        res.json(project);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');

@@ -5,18 +5,23 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { logoutUser } from '../../../redux/actions/userActions';
 
-const ProfileBox = ({ userDetails }) => {
+const ProfileBox = ({ userDetails, position }) => {
     const navigate = useNavigate();
-        const id = useSelector(state => state.user.userId);
 
     const handleLogout = () => {
         logoutUser();
         navigate('/');
     };
 
+    const profileBoxStyle = {
+        top: `${position.top}px`,
+        right: `${position.right}px`,
+        left: `${position.left}px`,
+        bottom: `${position.bottom}px`,
+    };
 
     return (
-        <div className={styles.profileBox}>
+        <div className={styles.profileBox} style={profileBoxStyle}>
             <div className={styles.column}>
                 <h3>Account</h3>
                 <ul>

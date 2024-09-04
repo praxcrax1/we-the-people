@@ -19,7 +19,7 @@ const Navbar = ({ hideSearchAndStart = false}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
-
+    const [profilePosition, setProfilePosition] = useState({ top: 0, right: 0 });
 
     useEffect(() => {
         if (!id) {
@@ -78,10 +78,26 @@ const Navbar = ({ hideSearchAndStart = false}) => {
         navigate(`/project/${projectId}`);
         setShowDropdown(false);
     };
+
+    const handleProfileClick = (event) => {
+        if (hideSearchAndStart) {
+        setProfilePosition({
+            top: 10,
+            right: 10
+        });
+        }
+        else{
+            setProfilePosition({
+                top: 10,
+                left: 320
+            });
+        }
+        setShowProfile(!showProfile);
+    };
   
     return (
         <>
-        <div className={styles.navbar}>
+        <div className={`${styles.navbar} ${hideSearchAndStart ? styles.navbarCompact : ''}`}>
             <h1 onClick={() => navigate('/dashboard')} style={{cursor: 'pointer'}}>WeThePeople.</h1>
             {!hideSearchAndStart && (
                 <>
@@ -112,11 +128,19 @@ const Navbar = ({ hideSearchAndStart = false}) => {
                     <button onClick={() => navigate('/create-project')}>Start a Project</button>
                 </>
             )}
-            <div className={styles.profileContainer} onClick={() => setShowProfile(!showProfile)}>
+            <div className={styles.profileContainer} onClick={handleProfileClick}>
                 <img src={missing} alt="Profile" />
             </div>
         </div>
-        {showProfile && <div className={styles.profileBoxContainer}><ProfileBox ref={profileBoxRef} userDetails={userDetails}/></div    >}
+        {showProfile && (
+            <div className={styles.profileBoxContainer}>
+                <ProfileBox 
+                    ref={profileBoxRef} 
+                    userDetails={userDetails}
+                    position={profilePosition}
+                />
+            </div>
+        )}
         </>
     );
 };
