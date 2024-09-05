@@ -10,7 +10,7 @@ import { API_URL } from "../../../apiConfig";
 import { useSelector } from "react-redux";
 import { FaPencilAlt } from "react-icons/fa";
 
-const Back = ({}) => {
+const Back = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
     const [showModal, setShowModal] = useState(false);
