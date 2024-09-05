@@ -24,17 +24,8 @@ const Navbar = ({ hideSearchAndStart = false }) => {
         right: 0,
     });
 
-    useEffect(() => {
-        if (!id) {
-            const storedUserId = localStorage.getItem("userId");
-            if (storedUserId) {
-                dispatch(setUserId(storedUserId));
-            }
-        }
-        getUserDetails();
-    }, [id, dispatch]);
 
-    const getUserDetails = async () => {
+    const getUserDetails = useCallback(async () => {
         const userId = id || localStorage.getItem("userId");
         if (!userId) return;
 
@@ -49,20 +40,34 @@ const Navbar = ({ hideSearchAndStart = false }) => {
         } catch (error) {
             console.error("Error fetching user details:", error);
         }
-    };
+    }, [id]);
 
-    const handleSearch = async (term) => {
-        try {
-            const response = await axios.get(
-                `${API_URL}/api/projects/list?title=${term}`
-            );
-            setSearchResults(response.data);
-            setShowDropdown(true);
-        } catch (error) {
-            console.error("Error searching projects:", error);
+    useEffect(() => {
+        if (!id) {
+            const storedUserId = localStorage.getItem("userId");
+            if (storedUserId) {
+                dispatch(setUserId(storedUserId));
+            }
         }
-    };
+        getUserDetails();
+    }, [id, dispatch, getUserDetails]);
 
+    const handleSearch = useCallback(
+        async (term) => {
+            try {
+                const response = await axios.get(
+                    `${API_URL}/api/projects/list?title=${term}`
+                );
+                setSearchResults(response.data);
+                setShowDropdown(true);
+            } catch (error) {
+                console.error("Error searching projects:", error);
+            }
+        },
+        []
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedSearch = useCallback(
         debounce((term) => {
             if (term) {
@@ -72,11 +77,14 @@ const Navbar = ({ hideSearchAndStart = false }) => {
                 setShowDropdown(false);
             }
         }, 300),
-        []
+        [handleSearch]
     );
 
     useEffect(() => {
         debouncedSearch(searchTerm);
+        return () => {
+            debouncedSearch.cancel(); // Cleanup debounce on unmount
+        };
     }, [searchTerm, debouncedSearch]);
 
     const handleProjectClick = (projectId) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,13 +16,7 @@ const CreateProject = () => {
     const { id } = useParams();
     const isEditing = !!id;
 
-    useEffect(() => {
-        if (isEditing) {
-            fetchProjectDetails();
-        }
-    }, [id]);
-
-    const fetchProjectDetails = async () => {
+    const fetchProjectDetails = useCallback(async () => {
         try {
             const response = await axios.get(`${API_URL}/api/projects/${id}`, {
                 headers: {
@@ -36,7 +30,13 @@ const CreateProject = () => {
         } catch (error) {
             toast.error("Failed to fetch project details");
         }
-    };
+    }, [id]);
+
+    useEffect(() => {
+        if (isEditing) {
+            fetchProjectDetails();
+        }
+    }, [isEditing, fetchProjectDetails]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
