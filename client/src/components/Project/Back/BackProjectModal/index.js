@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styles from './styles.module.css';
+import React, { useState } from "react";
+import styles from "./styles.module.css";
 
 const BackProjectModal = ({ show, onClose, onSubmit }) => {
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState("");
 
     if (!show) return null;
 
@@ -14,7 +14,9 @@ const BackProjectModal = ({ show, onClose, onSubmit }) => {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
-                <button className={styles.closeButton} onClick={onClose}>&times;</button>
+                <button className={styles.closeButton} onClick={onClose}>
+                    &times;
+                </button>
                 <h2>Back this Project</h2>
                 <form onSubmit={handleSubmit}>
                     <span>Enter Amount</span>
@@ -27,7 +29,9 @@ const BackProjectModal = ({ show, onClose, onSubmit }) => {
                             required
                         />
                     </label>
-                    <button type="submit" className={styles.submitButton}>Submit</button>
+                    <button type="submit" className={styles.submitButton}>
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>

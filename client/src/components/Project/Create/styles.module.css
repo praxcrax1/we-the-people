@@ -1,8 +1,8 @@
-body{
-    background-image: url('../../../Images/homebg.png');
+body {
+    background-image: url("../../../Images/homebg.png");
 }
 
-.createProject{
+.createProject {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -20,36 +20,36 @@ body{
     flex-direction: column;
     align-items: stretch;
     box-sizing: border-box;
-  }
-  
-  .createProjectForm span {
+}
+
+.createProjectForm span {
     text-align: left;
     font-size: 1.2em;
     font-weight: 600;
-  }
-  
-  .createProjectForm input {
+}
+
+.createProjectForm input {
     width: 100%;
     padding: 0.75em;
-    border: 1px solid #525AD1;
+    border: 1px solid #525ad1;
     box-sizing: border-box;
-  }
-  
-  .createProjectForm input:focus {
+}
+
+.createProjectForm input:focus {
     outline: none;
-  }
-  
-  .createProjectForm button {
+}
+
+.createProjectForm button {
     width: 100%;
     padding: 1em;
     margin-top: 10px;
-    background-color: #525AD1;
+    background-color: #525ad1;
     color: white;
     border: none;
     cursor: pointer;
-  }
+}
 
-  .loader {
+.loader {
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-top: 2px solid white;
     border-radius: 50%;
@@ -57,5 +57,4 @@ body{
     height: 10px;
     animation: spin 1s linear infinite;
     display: inline-block;
-  }
-
+}

@@ -3,19 +3,18 @@ import styles from "./styles.module.css";
 import axios from "axios";
 import Navbar from "../Navbar";
 import ProjectCardGroup from "../Project/ProjectCardGroup";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserId } from "../../redux/actions/userActions"; // Assuming this action exists
 import { API_URL } from "../../apiConfig";
 
 const Home = () => {
     const [projects, setProjects] = useState([]);
-    const userId = useSelector(state => state.user.userId);
+    const userId = useSelector((state) => state.user.userId);
     const dispatch = useDispatch();
 
     useEffect(() => {
         // Check if userId is in localStorage and set it in Redux if it exists
-        const storedUserId = localStorage.getItem('userId');
+        const storedUserId = localStorage.getItem("userId");
         if (storedUserId && !userId) {
             dispatch(setUserId(storedUserId));
         }
@@ -37,7 +36,7 @@ const Home = () => {
 
     return (
         <div className={styles.parentContainer}>
-            <Navbar/>
+            <Navbar />
             <div className={styles.contentContainer}>
                 <div className={styles.introContainer}>
                     <span>Bring a creative idea to life</span>
@@ -60,11 +59,9 @@ const Home = () => {
                 <div className={styles.cardContainerParent}>
                     <div className={styles.cardContainer}>
                         <span>Recommended for you:</span>
-                        <ProjectCardGroup 
-                            projects={projects} 
-                        />
+                        <ProjectCardGroup projects={projects} />
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     );

@@ -8,31 +8,32 @@
     width: 100%;
     height: 100%;
     padding: 15px;
-    transition: background-color 0.3s ease, border 0.3s ease, transform 0.3s ease;
-  }
+    transition: background-color 0.3s ease, border 0.3s ease,
+        transform 0.3s ease;
+}
 
-  .projectCard:hover {
+.projectCard:hover {
     background-color: white;
     border-radius: 10px;
     border: 1px solid #000000a3;
     transform: translateY(-5px);
-  }
+}
 
-  .projectImage {
+.projectImage {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
-  }
+}
 
-  .profileIcon {
+.profileIcon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
-  }
+}
 
-  .cardContent {
+.cardContent {
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -42,9 +43,9 @@
     height: 100%;
     padding: 15px 0 0 0;
     box-sizing: border-box;
-  }
+}
 
-  .projectDetailsContainer {
+.projectDetailsContainer {
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -52,27 +53,25 @@
     align-items: center;
     align-items: flex-start;
     font-size: 1em;
-  }
+}
 
-  .projectTitle {
+.projectTitle {
     font-size: 1.2em;
     color: black;
     font-weight: 500;
-  }
+}
 
-  .fundingStatus {
+.fundingStatus {
     padding-top: 10px;
     font-size: 1em;
     color: black;
-  }
+}
 
-  .projectDescription {
+.projectDescription {
     font-size: 0.8em;
-  }
+}
 
-  .creator {
+.creator {
     font-size: 0.8em;
     color: #000000a3;
-  }
-
-
+}

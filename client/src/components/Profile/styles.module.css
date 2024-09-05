@@ -18,7 +18,6 @@
     height: 100%;
 }
 
-
 .profileFormButtons {
     display: flex;
     flex-direction: column;
@@ -30,7 +29,7 @@
     width: 100%;
     padding: 10px;
     border: none;
-    background-color: #525AD1;
+    background-color: #525ad1;
     color: #fff;
     cursor: pointer;
 }

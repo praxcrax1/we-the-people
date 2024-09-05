@@ -1,20 +1,22 @@
-import React from 'react';
-import styles from './styles.module.css';
-import missing from '../../../Images/missing.jpg';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import styles from "./styles.module.css";
+import missing from "../../../Images/missing.jpg";
+import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ project }) => {
     const navigate = useNavigate();
-    
+
     const truncateDescription = (description, maxLength = 100) => {
         if (description.length <= maxLength) return description;
-        return description.slice(0, maxLength) + '...';
+        return description.slice(0, maxLength) + "...";
     };
 
     return (
-        <div className={styles.projectCard} onClick={() => {
-            navigate(`/project/${project._id}`);
-        }}>
+        <div
+            className={styles.projectCard}
+            onClick={() => {
+                navigate(`/project/${project._id}`);
+            }}>
             <img
                 src={`https://picsum.photos/seed/${project._id}/300/200`}
                 alt={project.title}
@@ -28,10 +30,15 @@ const ProjectCard = ({ project }) => {
                 />
                 <div className={styles.projectDetailsContainer}>
                     <span className={styles.projectTitle}>{project.title}</span>
-                    <span className={styles.creator}>by {project.creator.name}</span>
+                    <span className={styles.creator}>
+                        by {project.creator.name}
+                    </span>
                     <div className={styles.fundingStatus}>
                         <span>
-                            {Math.floor((project.amountRaised / project.goal) * 100)}% funded
+                            {Math.floor(
+                                (project.amountRaised / project.goal) * 100
+                            )}
+                            % funded
                         </span>
                     </div>
                     <div className={styles.projectDescription}>

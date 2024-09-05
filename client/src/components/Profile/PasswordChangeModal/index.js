@@ -1,40 +1,47 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import styles from './styles.module.css';
-import { toast } from 'react-toastify';
-import { API_URL } from '../../../apiConfig';
+import React, { useState } from "react";
+import axios from "axios";
+import styles from "./styles.module.css";
+import { toast } from "react-toastify";
+import { API_URL } from "../../../apiConfig";
 
 const PasswordChangeModal = ({ show, onClose, onSubmit, email }) => {
-    const [oldPassword, setOldPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
 
     if (!show) return null;
 
     const handleChangePassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${API_URL}/api/auth/change-password`, {
-                email: email,
-                oldPassword,
-                newPassword
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': localStorage.getItem('x-auth-token')
+            const response = await axios.post(
+                `${API_URL}/api/auth/change-password`,
+                {
+                    email: email,
+                    oldPassword,
+                    newPassword,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-auth-token": localStorage.getItem("x-auth-token"),
+                    },
                 }
-            });
-            
-            if (response.data.msg === 'Password updated successfully') {
+            );
+
+            if (response.data.msg === "Password updated successfully") {
                 onSubmit();
                 onClose();
-                toast.success('Password changed successfully!');
+                toast.success("Password changed successfully!");
             }
         } catch (error) {
-            console.error('Error changing password:', error);
-            if (error.response && error.response.data.msg === 'Invalid old password') {
-                toast.error('Invalid old password. Please try again.');
+            console.error("Error changing password:", error);
+            if (
+                error.response &&
+                error.response.data.msg === "Invalid old password"
+            ) {
+                toast.error("Invalid old password. Please try again.");
             } else {
-                toast.error('Failed to change password. Please try again.');
+                toast.error("Failed to change password. Please try again.");
             }
         }
     };
@@ -42,7 +49,9 @@ const PasswordChangeModal = ({ show, onClose, onSubmit, email }) => {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
-                <button className={styles.closeButton} onClick={onClose}>&times;</button>
+                <button className={styles.closeButton} onClick={onClose}>
+                    &times;
+                </button>
                 <h2>Change Password</h2>
                 <form onSubmit={handleChangePassword}>
                     <label>
@@ -63,7 +72,9 @@ const PasswordChangeModal = ({ show, onClose, onSubmit, email }) => {
                             required
                         />
                     </label>
-                    <button type="submit" className={styles.submitButton}>Change Password</button>
+                    <button type="submit" className={styles.submitButton}>
+                        Change Password
+                    </button>
                 </form>
             </div>
         </div>
