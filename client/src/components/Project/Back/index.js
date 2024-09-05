@@ -14,8 +14,9 @@ const Back = () => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const userDetails = useSelector((state) => state.user.userDetails);
-    const [user, setUser] = useState(null);
+    const [userDetails, setUserDetails] = useState(
+        useSelector((state) => state.user.userDetails)
+    );
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,16 +33,18 @@ const Back = () => {
 
         fetchProject();
         if (userDetails) {
-            setUser(userDetails);
+            setUserDetails(userDetails);
         } else {
             const storedUser = JSON.parse(localStorage.getItem("userDetails"));
             if (storedUser) {
-                setUser(storedUser);
+                setUserDetails(storedUser);
             }
         }
     }, [id, userDetails]);
 
-    const userProject = user ? user.createdProjects.includes(id) : false;
+    const userProject = userDetails
+        ? userDetails.createdProjects.map((project) => project._id === id)
+        : false;
 
     const handleBackProject = async (amount) => {
         try {
