@@ -71,7 +71,6 @@ The web-based application will provide the following features (feel free to exte
 **Description:** Authenticate and log in a user.
 
 
-
 ### 3. User Password Reset
 
 **Route:** `POST /api/change-password`
@@ -79,14 +78,11 @@ The web-based application will provide the following features (feel free to exte
 **Description:** Change a user's password
 
 
-## User Management
-
 ### 4. Get User Profile
 
 **Route:** `GET /api/users/:id`
 
 **Description:** Retrieve user profile information.
-=
 
 ### 5. Update User Profile
 
@@ -95,7 +91,6 @@ The web-based application will provide the following features (feel free to exte
 **Description:** Update user profile information.
 
 
-## Project Management
 
 ### 6. Create Project
 
@@ -124,7 +119,6 @@ The web-based application will provide the following features (feel free to exte
 
 **Description:** Contribute to a project.
 
-## Project Details
 
 ### 10. Get Project Details
 
@@ -133,8 +127,6 @@ The web-based application will provide the following features (feel free to exte
 **Description:** Retrieve details of a specific project.
 
 
-## Project Updates
-
 ### 11. Add Project Update
 
 **Route:** `POST /api/projects/:id/updates`
@@ -142,7 +134,7 @@ The web-based application will provide the following features (feel free to exte
 **Description:** Add an update to a project.
 
 
-### 11. Get a list of all projects
+### 12. Get a list of all projects
 
 **Route:** `GET /api/projects/list`
 
