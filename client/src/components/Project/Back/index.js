@@ -43,7 +43,7 @@ const Back = () => {
     }, [id, userDetails]);
 
     const userProject = userDetails
-        ? userDetails.createdProjects.map((project) => project._id === id)
+        ? userDetails.createdProjects.includes(id)
         : false;
 
     const handleBackProject = async (amount) => {
