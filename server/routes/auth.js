@@ -45,7 +45,7 @@ router.post('/signup', [
             { expiresIn: '1h' },
             (err, token) => {
                 if (err) throw err;
-                res.json({ token: token, id: user.id });
+                res.json({ token: token, id: user.id, user: user });
             }
         );
     } catch (err) {
