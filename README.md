@@ -55,7 +55,6 @@ The web-based application will provide the following features (feel free to exte
 
 # WeThePeople API Documentation
 
-## Authentication
 
 ### 1. User Registration
 
