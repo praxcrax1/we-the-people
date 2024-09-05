@@ -46,6 +46,8 @@ export const fetchUserDetails = (userId) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem("x-auth-token");
+    localStorage.removeItem("userDetails");
+    localStorage.removeItem("userId");
     dispatch(clearUserId());
     dispatch(clearUserDetails());
 };

@@ -74,26 +74,39 @@ const CreateProject = () => {
             );
 
             if (response.data) {
-                toast.success(
-                    isEditing
-                        ? "Project updated successfully!"
-                        : "Project created successfully!"
-                );
-                setTitle("");
-                setDescription("");
-                setGoal("");
-                if (isEditing) {
-                    navigate(`/project/${id}`);
-                } else {
-                    navigate("/dashboard");
-                }
+                const successMessage = isEditing
+                    ? "Project updated successfully!"
+                    : "Project created successfully!";
+                toast.success(successMessage, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                setTimeout(() => {
+                    if (isEditing) {
+                        navigate(`/project/${id}`);
+                    } else {
+                        navigate("/dashboard");
+                    }
+                }, 1000);
             }
         } catch (error) {
             toast.error(
                 error.response?.data?.msg ||
                     `An error occurred while ${
                         isEditing ? "updating" : "creating"
-                    } the project`
+                    } the project`,
+                {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                }
             );
         } finally {
             setIsLoading(false);

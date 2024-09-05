@@ -2,12 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import { logoutUser } from "../../../redux/actions/userActions";
+import { useDispatch } from "react-redux";
 
 const ProfileBox = ({ userDetails, position }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
-        logoutUser();
+        dispatch(logoutUser());
         navigate("/");
     };
 
