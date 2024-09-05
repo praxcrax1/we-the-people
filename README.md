@@ -50,3 +50,101 @@ The web-based application will provide the following features (feel free to exte
 
 ### Featured Projects
 - Highlights a selection of top or trending projects on the home page, making them more visible to potential backers.
+
+
+
+# WeThePeople API Documentation
+
+## Authentication
+
+### 1. User Registration
+
+**Route:** `POST /api/auth/signup`
+
+**Description:** Signup a new user.
+
+
+### 2. User Login
+
+**Route:** `POST /api/auth/login`
+
+**Description:** Authenticate and log in a user.
+
+
+
+### 3. User Password Reset
+
+**Route:** `POST /api/change-password`
+
+**Description:** Change a user's password
+
+
+## User Management
+
+### 4. Get User Profile
+
+**Route:** `GET /api/users/:id`
+
+**Description:** Retrieve user profile information.
+=
+
+### 5. Update User Profile
+
+**Route:** `PUT /api/users/:id`
+
+**Description:** Update user profile information.
+
+
+## Project Management
+
+### 6. Create Project
+
+**Route:** `POST /api/projects/create`
+
+**Description:** Create a new crowdfunding project.
+
+
+### 7. Update Project
+
+**Route:** `PUT /api/projects/:id`
+
+**Description:** Update an existing project.
+
+
+### 8. Delete Project
+
+**Route:** `DELETE /api/projects/:id`
+
+**Description:** Delete a project.
+
+
+### 9. Contribute to Project
+
+**Route:** `POST /api/projects/:id/contribute`
+
+**Description:** Contribute to a project.
+
+## Project Details
+
+### 10. Get Project Details
+
+**Route:** `GET /api/projects/:id`
+
+**Description:** Retrieve details of a specific project.
+
+
+## Project Updates
+
+### 11. Add Project Update
+
+**Route:** `POST /api/projects/:id/updates`
+
+**Description:** Add an update to a project.
+
+
+### 11. Get a list of all projects
+
+**Route:** `GET /api/projects/list`
+
+**Description:** Get a list of all projects.
+
