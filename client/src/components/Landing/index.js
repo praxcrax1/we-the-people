@@ -34,6 +34,10 @@ const Landing = () => {
                         Signup
                     </Link>
                 </div>
+                <span className={styles.footer}>
+                    Made with ❤️ by{" "}
+                    <Link to="https://github.com/praxcrax1">Prakhar</Link>
+                </span>
             </div>
         </div>
     );
